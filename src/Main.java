@@ -27,9 +27,11 @@ public class Main {
 
         for (JsonElement feature : features) {
             JsonObject properties = feature.getAsJsonObject().getAsJsonObject("properties");
-            String privinceCode = properties.get("PROV_CODE").getAsString();
-            String privinceName = properties.get("PROV_NAME").getAsString();
+            String provinceCode = properties.get("PROV_CODE").getAsString();
+            String provinceName = properties.get("PROV_NAME").getAsString();
             String regionCode = properties.get("REG_CODE").getAsString();
+            String shape_area = properties.get("SHAPE_AREA").getAsString();
+            String shape_len = properties.get("SHAPE_LEN").getAsString();
 
             JsonObject geometry = feature.getAsJsonObject().getAsJsonObject("geometry");
             JsonArray coordinates0 = geometry.get("coordinates").getAsJsonArray();
@@ -40,8 +42,10 @@ public class Main {
             double[] lngs = makeDoubleArray(0, coordinates2);
 
             System.out.println(regionCode + ","
-                    + privinceCode + ","
-                    + privinceName + ","
+                    + provinceCode + ","
+                    + provinceName + ","
+                    + shape_area + ","
+                    + shape_len + ","
                     + min(lats) + "," + min(lngs) + ","
                     + max(lats) + "," + max(lngs)
             );
